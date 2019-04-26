@@ -1,4 +1,4 @@
-To run this final project
+To run this Item Catalog project
 
 1. Navigate to the Full-Stack-Foundations/Lesson-4/Final-Project directory inside the vagrant environment
 
