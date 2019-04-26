@@ -1,6 +1,7 @@
 {% extends "main.html" %}
 {% block content %}
 {% include "header.html" %}
+<div class="container">
 <div class = 'flash'>
 		{% with messages = get_flashed_messages() %}
 {% if messages %}
@@ -14,14 +15,11 @@
 {% endwith %}
 
 </div>
-
-
 			<div class="row padding-bottom">
-					<div class="col-md-1"></div>
-					<div class="col-md-5">
+					<div class="col-md-6">
 						{% include "categories_table.html" %}
 					</div>
-					<div class="col-md-5">
+					<div class="col-md-6">
 						<table class="table table-striped table-sm">
 							<thead>
 								<tr>
@@ -41,6 +39,6 @@
 							</tbody>
 						</table>
 					</div>
-					<div class="col-md-1"></div>
 				</div>
+			</div>
 {% endblock %}
