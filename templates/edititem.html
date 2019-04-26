@@ -1,0 +1,43 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10">	
+			<form action="#" method = 'post'>
+				<div class="form-group">
+					<label for="title">Title:</label>
+					<input id="title" class="form-control" type ='text' size='30' name='title' placeholder = '{{item.title }}' value= '{{item.title }}'>
+				</div>
+				<div class="form-group">
+					<label for="description">Description:</label>
+					<textarea class="form-control" rows="5" id="description" name="description">{{item.description}}</textarea>
+				</div>
+				<div class="form-group">
+					<label for="category">Category: </p>
+					<select class="form-control" id="category" name="category">
+						{% for category in categories %}
+							{% if category.id == item.category_id %}
+								<option value= "{{category.id}}" SELECTED>{{category.name}}</option>
+							{% else %}
+								<option value= "{{category.id}}">{{category.name}}</option>
+							{% endif %}
+						{% endfor %}	
+					</select>
+				</div>
+				<input class="btn btn-info" type='submit' value='Submit'>
+				<a class="btn btn-info" href="{{url_for('showItem', item_name=item.title)}}">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel
+				</a>
+			</form>
+			<!--<a href="{{url_for('showItem', item_name=item.title)}}">
+					<button style="margin-top: -52px" class="btn btn-info">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+			</a>
+		-->
+		</div>
+		<div class="col-md-1"></div>
+</div>
+
+{% endblock %}	
+

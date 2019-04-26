@@ -1,0 +1,66 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class="row divider blue">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner main">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<h1>Welcome to Item Catalog!</h1>
+		</div>
+	</div>
+
+<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+	
+	<div class="row padding-top">
+		<div class="col-md-1"></div>
+		<div class="col-md-10 padding-none text-right">
+			<a href="{{url_for('createItem')}}">
+				<button class="btn btn-primary" id="new-item">
+					Add New Item
+				</button>
+			</a>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+	<div class="row padding-bottom">
+		<div class="col-md-1"></div>
+		<div class="col-md-5">
+			{% include "categories_table.html" %}
+		</div>
+		<div class="col-md-5">
+			<table class="table table-striped table-sm">
+				<thead>
+					<tr>
+						<th scope="col"><h2>Latest Items</h2></th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for item in latestItems %}
+				<tr>
+					<td>
+						<a href = "{{url_for('showItem', item_name = item.title)}}">
+								<h3>{{item.title}}</h3>
+						</a>
+					</td>
+				</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+{% endblock %}
