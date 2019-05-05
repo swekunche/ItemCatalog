@@ -85,7 +85,7 @@ h3 {
 	background: url("/static/catalog-banner.jpg");
 	background-position: right;
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: contain;
 }
 .banner.menu {
 	height: 150px;

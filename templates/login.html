@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+      
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
     <script>
@@ -20,7 +23,23 @@
 
 <body>  
 <div class="container">
-    <button id="signinButton">Google Signin</button>
+    <div id="signIn">
+    <div class = 'flash'>
+        {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        
+      <ul>
+      {% for message in messages %}
+          <li> <strong> {{ message }} </strong> </li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+  {% endwith %}
+
+    </div>
+
+    <a class="btn btn-primary" id="signinButton">Google Signin</a>
+    </div>
     <div id="result"></div>
 </div>
 
@@ -28,7 +47,7 @@
     $('#signinButton').click(function() {
       function signInCallback(authResult){
         if (authResult['code']){
-          $('#signinButton').attr('style', 'display: none');
+          $('#signIn').attr('style', 'display: none');
           $.ajax({
             type: 'POST',
             url: '/gconnect?state={{STATE}}',

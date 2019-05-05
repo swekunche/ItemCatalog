@@ -95,6 +95,7 @@ def gconnect():
         return response
 
     # Store the access token in the session for later use.
+    print("Login access_token:"+credentials.access_token)
     login_session['access_token'] = credentials.access_token
     login_session['gplus_id'] = gplus_id
 
@@ -108,8 +109,6 @@ def gconnect():
     login_session['username'] = data['name']
     login_session['picture'] = data['picture']
     login_session['email'] = data['email']
-
-    print("in here"+data['name'])
 
     # See if a user exists, if it doesn't make a new one
 
@@ -154,24 +153,23 @@ def getUserID(email):
 def gdisconnect():
     # Only disconnect a connected user.
     access_token = login_session.get('access_token')
-    print("access_token:"+access_token)
-    if access_token is None:
-        response = make_response(
-            json.dumps('Current user not connected.'), 401)
-        response.headers['Content-Type'] = 'application/json'
-        return response
-    url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % access_token
-    h = httplib2.Http()
-    result = h.request(url, 'GET')[0]
-    if result['status'] == '200':
-        response = make_response(json.dumps('Successfully disconnected.'), 200)
-        response.headers['Content-Type'] = 'application/json'
-        return response
-    else:
-        response = make_response(json.dumps(
-            'Failed to revoke token for given user.', 400))
-        response.headers['Content-Type'] = 'application/json'
-        return response
+    print('In gdisconnect access token is %s', access_token)
+    url = 'https://accounts.google.com/o/oauth2/revoke'
+    revoke = requests.post(url, params={'token': access_token},
+                           headers={'content-type':
+                           'application/x-www-form-urlencoded'})
+    result = getattr(revoke, 'status_code')
+    status_code = getattr(revoke, 'status_code')
+    if status_code == 200:
+        del login_session['access_token']
+        del login_session['gplus_id']
+        del login_session['username']
+        del login_session['email']
+        del login_session['picture']
+        response = make_response(json.dumps('Disconnected.'), 200)
+        flash("You have Successfully logged out")
+        redirect('/Catalog')
+    return redirect('/Catalog')
 
 # JSON APIs to view Catalog Information
 @app.route('/Catalog/categories/JSON')
