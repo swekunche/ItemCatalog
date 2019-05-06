@@ -25,22 +25,42 @@ category1 = Category(name="Soccer")
 session.add(category1)
 session.commit()
 
-item1 = Item(title="Jersey", description="Text for Jersey.Lorem ipsum dolor sit amet, viderer consequat ea has. Nec ad imperdiet scriptorem, noster possim delicata vel cu, id vis aperiri nominavi voluptatibus. Accusata sensibus oportere no qui, an sale essent his.", category=category1, username='Swetha')
+item1 = Item(title="Jersey", description="Text for Jersey.
+             Lorem ipsum dolor sit amet, viderer consequat ea has.
+             Nec ad imperdiet scriptorem, noster possim delicata vel cu,
+             id vis aperiri nominavi voluptatibus. Accusata sensibus
+             oportere no qui, an sale essent his.",
+             category=category1, username='Swetha')
 
 session.add(item1)
 session.commit()
 
-item2 = Item(title="Soccer Cleats", description="Text for Soccer Cleats. Lorem ipsum dolor sit amet, viderer consequat ea has. Nec ad imperdiet scriptorem, noster possim delicata vel cu, id vis aperiri nominavi voluptatibus. Accusata sensibus oportere no qui, an sale essent his.", category=category1, username='Swetha k')
+item2 = Item(title="Soccer Cleats", description="Text for
+             Lorem ipsum dolor sit amet, viderer consequat ea has.
+             Nec ad imperdiet scriptorem, noster possim delicata vel cu,
+             id vis aperiri nominavi voluptatibus. Accusata sensibus
+             oportere no qui, an sale essent his.",
+             category=category1, username='Swetha k')
 
 session.add(item2)
 session.commit()
 
-item3 = Item(title="Shinguards", description="Text for ShinGuards. Lorem ipsum dolor sit amet, viderer consequat ea has. Nec ad imperdiet scriptorem, noster possim delicata vel cu, id vis aperiri nominavi voluptatibus. Accusata sensibus oportere no qui, an sale essent his.", category=category1, username='Swetha k')
+item3 = Item(title="Shinguards", description="Text for ShinGuards.
+             Lorem ipsum dolor sit amet, viderer consequat ea has.
+             Nec ad imperdiet scriptorem, noster possim delicata vel cu,
+             id vis aperiri nominavi voluptatibus. Accusata sensibus
+             oportere no qui, an sale essent his.",
+             category=category1, username='Swetha k')
 
 session.add(item3)
 session.commit()
 
-item4 = Item(title="Two shinguards", description="Text for Two Shinguards. Lorem ipsum dolor sit amet, viderer consequat ea has. Nec ad imperdiet scriptorem, noster possim delicata vel cu, id vis aperiri nominavi voluptatibus. Accusata sensibus oportere no qui, an sale essent his.", category=category1, username='Swetha k')
+item4 = Item(title="Two shinguards", description="Text for Two Shinguards.
+             Lorem ipsum dolor sit amet, viderer consequat ea has.
+             Nec ad imperdiet scriptorem, noster possim delicata vel cu,
+             id vis aperiri nominavi voluptatibus. Accusata sensibus
+             oportere no qui, an sale essent his.",
+             category=category1, username='Swetha k')
 
 session.add(item4)
 session.commit()
@@ -52,12 +72,23 @@ category2 = Category(name="SnowBoarding")
 session.add(category2)
 session.commit()
 
-item1 = Item(title="Goggles", description="Text for Goggles. Lorem ipsum dolor sit amet, viderer consequat ea has. Nec ad imperdiet scriptorem, noster possim delicata vel cu, id vis aperiri nominavi voluptatibus. Accusata sensibus oportere no qui, an sale essent his.", category=category2, username='Swetha k')
+item1 = Item(title="Goggles", description="Text for Goggles.
+             Lorem ipsum dolor sit amet, viderer consequat ea has.
+             Nec ad imperdiet scriptorem, noster possim delicata vel cu,
+             id vis aperiri nominavi voluptatibus. Accusata sensibus
+             oportere no qui, an sale essent his.",
+             category=category1, username='Swetha k')
 
 session.add(item1)
 session.commit()
 
-item2 = Item(title="Snowboard", description="Text for Snowboard. Lorem ipsum dolor sit amet, viderer consequat ea has. Nec ad imperdiet scriptorem, noster possim delicata vel cu, id vis aperiri nominavi voluptatibus. Accusata sensibus oportere no qui, an sale essent his.", category=category2 , username='Swetha k')
+item2 = Item(title="Snowboard", description="Text for Snowboard.
+             Lorem ipsum dolor sit amet, viderer consequat ea has.
+             Nec ad imperdiet scriptorem, noster possim delicata vel cu,
+             id vis aperiri nominavi voluptatibus. Accusata sensibus
+             oportere no qui, an sale essent his.",
+             category=category1, username='Swetha k')
+
 
 session.add(item2)
 session.commit()
@@ -69,7 +100,12 @@ category3 = Category(name="Basketball")
 session.add(category3)
 session.commit()
 
-item1 = Item(title="Basketball", description="Text for Basketball. Lorem ipsum dolor sit amet, viderer consequat ea has. Nec ad imperdiet scriptorem, noster possim delicata vel cu, id vis aperiri nominavi voluptatibus. Accusata sensibus oportere no qui, an sale essent his.", category=category3, username='Swetha k')
+item1 = Item(title="Basketball", description="Text for Basketball.
+             Lorem ipsum dolor sit amet, viderer consequat ea has.
+             Nec ad imperdiet scriptorem, noster possim delicata vel cu,
+             id vis aperiri nominavi voluptatibus. Accusata sensibus
+             oportere no qui, an sale essent his.",
+             category=category1, username='Swetha k')
 
 session.add(item1)
 session.commit()
@@ -80,7 +116,12 @@ category4 = Category(name="Baseball")
 session.add(category4)
 session.commit()
 
-item1 = Item(title="Bat", description="Text for Bat. Lorem ipsum dolor sit amet, viderer consequat ea has. Nec ad imperdiet scriptorem, noster possim delicata vel cu, id vis aperiri nominavi voluptatibus. Accusata sensibus oportere no qui, an sale essent his.", category=category4, username='Swetha k')
+item1 = Item(title="Bat", description="Text for Bat.
+             Lorem ipsum dolor sit amet, viderer consequat ea has.
+             Nec ad imperdiet scriptorem, noster possim delicata vel cu,
+             id vis aperiri nominavi voluptatibus. Accusata sensibus
+             oportere no qui, an sale essent his.",
+             category=category1, username='Swetha k')
 
 session.add(item1)
 session.commit()
@@ -91,7 +132,13 @@ category5 = Category(name="Frisbee")
 session.add(category5)
 session.commit()
 
-item1 = Item(title="Frisbee", description="Text for Frisbee. Lorem ipsum dolor sit amet, viderer consequat ea has. Nec ad imperdiet scriptorem, noster possim delicata vel cu, id vis aperiri nominavi voluptatibus. Accusata sensibus oportere no qui, an sale essent his.", category=category5, username='Swetha k')
+item1 = Item(title="Frisbee", description="Text for Frisbee.
+             Lorem ipsum dolor sit amet, viderer consequat ea has.
+             Nec ad imperdiet scriptorem, noster possim delicata vel cu,
+             id vis aperiri nominavi voluptatibus. Accusata sensibus
+             oportere no qui, an sale essent his.",
+             category=category1, username='Swetha k')
+
 
 session.add(item1)
 session.commit()
@@ -102,7 +149,13 @@ category6 = Category(name="Hockey")
 session.add(category6)
 session.commit()
 
-item1 = Item(title="Stick", description="Text for Stick. Lorem ipsum dolor sit amet, viderer consequat ea has. Nec ad imperdiet scriptorem, noster possim delicata vel cu, id vis aperiri nominavi voluptatibus. Accusata sensibus oportere no qui, an sale essent his.", category=category6, username='Swetha k')
+item1 = Item(title="Stick", description="Text for Stick.
+             Lorem ipsum dolor sit amet, viderer consequat ea has.
+             Nec ad imperdiet scriptorem, noster possim delicata vel cu,
+             id vis aperiri nominavi voluptatibus. Accusata sensibus
+             oportere no qui, an sale essent his.",
+             category=category1, username='Swetha k')
+
 
 session.add(item1)
 session.commit()

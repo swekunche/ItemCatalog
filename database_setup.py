@@ -34,7 +34,7 @@ class Item(Base):
     created_date = Column(DateTime, default=datetime.datetime.utcnow)
     category_id = Column(Integer, ForeignKey('category.id'))
     category = relationship(Category)
-    
+
     @property
     def serialize(self):
         """Return object data in easily serializeable format"""
@@ -42,8 +42,8 @@ class Item(Base):
             'title': self.title,
             'description': self.description,
             'id': self.id,
-            'username':self.username,
-            'createdDate':self.created_date
+            'username': self.username,
+            'createdDate': self.created_date
         }
 
 

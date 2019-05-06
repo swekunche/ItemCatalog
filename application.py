@@ -157,7 +157,7 @@ def gdisconnect():
     url = 'https://accounts.google.com/o/oauth2/revoke'
     revoke = requests.post(url, params={'token': access_token},
                            headers={'content-type':
-                           'application/x-www-form-urlencoded'})
+                                    'application/x-www-form-urlencoded'})
     result = getattr(revoke, 'status_code')
     status_code = getattr(revoke, 'status_code')
     if status_code == 200:
