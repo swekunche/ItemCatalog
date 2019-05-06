@@ -5,9 +5,9 @@ Setup:
 
 > This project makes use of the same Linux-based virtual machine (VM). Install VirtualBox/Vagrant:
 
-    	VirtualBox from https://www.virtualbox.org/wiki/Downloads
+    VirtualBox from https://www.virtualbox.org/wiki/Downloads
 
-    	Vagrant from https://www.vagrantup.com/downloads.html
+    Vagrant from https://www.vagrantup.com/downloads.html
 
 > Download the VM configuration
 
@@ -22,7 +22,11 @@ Setup:
 
 > Register with google Developers console to fetch client_secrets.json and authenticate with google id
 
-> Replace client_id in login.html with new client_id from client_secrets.json
+> Replace client_id in login.html with new client_id from client_secrets.
+
+> To install the dependencies, run:
+    
+    pip  install  -r  requirements.txt
 
 Execution:
 
