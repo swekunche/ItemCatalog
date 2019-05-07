@@ -14,6 +14,7 @@ import httplib2
 import json
 from flask import make_response
 import requests
+import logging
 
 CLIENT_ID = json.loads(open(
     'client_secrets.json', 'r').read())['web']['client_id']
@@ -32,6 +33,8 @@ session = DBSession()
 
 @app.route('/login/')
 def LoginFunction():
+    """Login route
+    """
     state = ''.join(random.choice(
         string.ascii_uppercase + string.digits) for x in xrange(32))
     login_session['state'] = state
@@ -40,6 +43,8 @@ def LoginFunction():
 
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
+    """Google authentication connect
+    """
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter.'), 401)
         response.headers['Content-Type'] = 'application/json'
@@ -55,7 +60,7 @@ def gconnect():
         response = make_response(
             json.dumps('Failed to upgrade the authorization code.'), 401)
         response.headers['Content-Type'] = 'application/json'
-        print "About to get 401 error"
+        logging.debug("About to get 401 error")
         return response
 
     # Check that the access token is valid.
@@ -82,7 +87,7 @@ def gconnect():
     if result['issued_to'] != CLIENT_ID:
         response = make_response(
             json.dumps("Token's client ID does not match app's."), 401)
-        print "Token's client ID does not match app's."
+        logging.debug("Token's client ID does not match app's.")
         response.headers['Content-Type'] = 'application/json'
         return response
 
@@ -95,7 +100,7 @@ def gconnect():
         return response
 
     # Store the access token in the session for later use.
-    print("Login access_token:"+credentials.access_token)
+    logging.debug("Login access_token:"+credentials.access_token)
     login_session['access_token'] = credentials.access_token
     login_session['gplus_id'] = gplus_id
 
@@ -121,7 +126,7 @@ def gconnect():
     output += """style = "width: 300px; height: 300px;border-radius: 150px;
                 -webkit-border-radius: 150px;-moz-border-radius: 150px;">"""
     flash("you are now logged in as %s" % login_session['username'])
-    print "done!"
+    logging.debug("done!")
     return output
 
 # User Helper Functions
@@ -151,9 +156,11 @@ def getUserID(email):
 
 @app.route('/gdisconnect')
 def gdisconnect():
+    """Google authentication disconnect
+    """
     # Only disconnect a connected user.
     access_token = login_session.get('access_token')
-    print('In gdisconnect access token is %s', access_token)
+    logging.debug('In gdisconnect access token is %s', access_token)
     url = 'https://accounts.google.com/o/oauth2/revoke'
     revoke = requests.post(url, params={'token': access_token},
                            headers={'content-type':
@@ -174,18 +181,24 @@ def gdisconnect():
 # JSON APIs to view Catalog Information
 @app.route('/Catalog/categories/JSON')
 def categoriesJSON():
+    """JSON API for categories
+    """
     categories = session.query(Category).all()
     return jsonify(categories=[i.serialize for i in categories])
 
 
 @app.route('/Catalog/latestItems/JSON')
 def latestItemsJSON():
+    """JSON API for latest items
+    """
     latestItems = session.query(Item).order_by('created_date').limit(10)
     return jsonify(latestItems=[i.serialize for i in latestItems])
 
 
 @app.route('/Catalog/<string:category_name>/items/JSON')
 def itemsinCategory(category_name):
+    """JSON API for items in category
+    """
     categories = session.query(Category).all()
     category = session.query(Category).filter_by(name=category_name).one()
     items = session.query(Item).filter_by(category_id=category.id).all()
@@ -195,6 +208,8 @@ def itemsinCategory(category_name):
 @app.route('/')
 @app.route('/Catalog')
 def showCategories():
+    """To show categories of items
+    """
     if 'username' not in login_session:
         return redirect('/login')
     else:
@@ -206,6 +221,8 @@ def showCategories():
 # Show all items in a Category
 @app.route('/Catalog/<string:category_name>/items/')
 def showItems(category_name):
+    """To show items in category
+    """
     categories = session.query(Category).all()
     category = session.query(Category).filter_by(name=category_name).one()
     items = session.query(Item).filter_by(category_id=category.id).all()
@@ -215,6 +232,8 @@ def showItems(category_name):
 # create a new item
 @app.route('/Catalog/new/', methods=['GET', 'POST'])
 def createItem():
+    """To create item in a category
+    """
     if request.method == 'POST':
         category_id = request.form['category']
         category = session.query(Category).filter_by(id=category_id).one()
@@ -234,6 +253,8 @@ def createItem():
 @app.route('/Catalog/<string:category_name>/<string:item_name>')
 @app.route('/Catalog/<string:item_name>')
 def showItem(item_name):
+    """To show item details
+    """
     item = session.query(Item).filter_by(title=item_name).one()
     if 'username' not in login_session:
         return redirect('/login')
@@ -250,6 +271,8 @@ def showItem(item_name):
 @app.route('/Catalog/<string:category_name>/<string:item_name>/edit',
            methods=['GET', 'POST'])
 def editItem(category_name, item_name):
+    """To show item to edit and update details
+    """
     item = session.query(Item).filter_by(title=item_name).one()
     if 'username' not in login_session:
         return redirect('/login')
@@ -280,6 +303,8 @@ def editItem(category_name, item_name):
 @app.route('/Catalog/<string:category_name>/<string:item_name>/delete',
            methods=['GET', 'POST'])
 def deleteItem(category_name, item_name):
+    """to delete the item
+    """
     itemToDelete = session.query(Item).filter_by(title=item_name).one()
     category = session.query(Category).filter_by(name=category_name).one()
     if 'username' not in login_session:
